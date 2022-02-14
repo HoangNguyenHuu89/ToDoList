@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head">
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>TodoList</title>
+
+<!-- Bootstrap -->
+
+<link
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}"
+    rel="stylesheet" />
+<!-- Custom style -->
+<link rel="stylesheet"  th:href="@{/css/style.css}" type="text/css" />
+<link rel="stylesheet"  th:href="@{/css/footer.css}" type="text/css" />
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script
+    src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"
+    th:src="@{/webjars/jquery/1.12.4/jquery.min.js}"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script
+    src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+    th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+
+</head>
+<body>
+    <nav th:fragment="header"
+        class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed"
+                    data-toggle="collapse" data-target="#navbar" aria-expanded="false"
+                    aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span> 
+                    <span class="icon-bar"></span> 
+                    <span class="icon-bar"></span> 
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" th:href="@{/employee}">MyTodoList</a>
+            </div>
+        </div>
+    </nav>
+
+	  <footer class="footer">
+  <div class="footer__wrapper">
+    <section class="footer-section">
+      <h2 class="footer-section__title">
+        About
+      </h2>
+      <ul class="footer-section__list">
+       
+      </ul>
+    </section>
+    <section class="footer-section">
+      <h2 class="footer-section__title">
+        Community
+      </h2>
+      <ul class="footer-section__list">
+       
+      </ul>
+    </section>
+    <section class="footer-section">
+      <h2 class="footer-section__title">
+        Host
+      </h2>
+      <ul class="footer-section__list">
+        
+       
+        
+      </ul>
+    </section>
+    <section class="footer-section">
+      <h2 class="footer-section__title">
+        Support
+      </h2>
+      <ul class="footer-section__list">
+       
+      </ul>
+    </section>
+  </div>
+  <div class="footer__wrapper">
+    <section class="footer-bottom">
+      <h4 class="footer-bottom__copyright">© 2022 TodoList, Inc.</h4>
+     
+    </section>
+    <!-- Footer bottom -->
+    <section class="footer-bottom">
+      <p class="footer-bottom__locale">
+        <i class="fas fa-globe"></i>
+        English (US)
+      </p>
+     
+      <ul class="footer-bottom__nav">
+        <li class="footer-bottom__item">
+          <a href="#">
+            <i aria-label="Facebook" title="Facebook" class="fab fa-facebook-f fa-lg"></i>
+          </a>
+        </li>
+        <li class="footer-bottom__item">
+          <a href="#">
+            <i aria-label="Twitter" title="Twitter" class="fab fa-twitter fa-lg"></i>
+          </a>
+        </li>
+        <li class="footer-bottom__item">
+          <a href="#">
+            <i aria-label="Instagram" title="Instagram" class="fab fa-instagram fa-lg"></i>
+          </a>
+        </li>
+      </ul>
+    </section>
+  </div>
+</footer>
+
+</body>
+</html>

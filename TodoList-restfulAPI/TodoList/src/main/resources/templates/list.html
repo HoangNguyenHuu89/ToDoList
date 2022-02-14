@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head"></head>
+<body>
+	<nav th:replace="layout :: header"></nav>
+
+	<div class="container main-content list">
+		<div th:if="${success}"
+			class="row alert alert-success alert-dismissible">
+			<button type="button" class="close" data-dismiss="alert"
+				aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+			<span th:text="${success}"></span>
+		</div>
+		<div class="row">
+			<a th:href="@{/todolist/create}" class="btn btn-success pull-left">
+				<span class="glyphicon glyphicon-plus"></span> Add new todolist
+			</a>
+			<form class="form-inline pull-right" action="#"
+				th:action="@{/todolist/search}" method="GET">
+				<div class="form-group">
+					<input type="text" class="form-control" name="s"
+						placeholder="Type todolist name..." />
+				</div>
+				<button type="submit" class="btn btn-primary">Search</button>
+			</form>
+		</div>
+		<th:block th:if="${#lists.isEmpty(todolists)}">
+			<h3>No employee</h3>
+		</th:block>
+
+		<th:block th:unless="${#lists.isEmpty(todolists)}">
+			<div class="row">
+				<table class="table table-bordered table-hover">
+					<thead>
+						<tr>
+							<th>No</th>
+							<th>Note</th>
+							<th>Date</th>
+							<th>Content</th>
+							<th>Edit</th>
+							<th>Delete</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="contact,iterStat : ${todolists}">
+							<td th:text="${iterStat.count}"></td>
+							<td th:text="${contact.name}"></td>		
+							<td th:text="${contact.date}"></td>
+							<td th:text="${contact.content}"></td>
+							<td><a th:href="@{/todolist/{id}/edit(id=${contact.id})}"><span
+									class="glyphicon glyphicon-pencil"></span></a></td>
+							<td><a th:href="@{/todolist/{id}/delete(id=${contact.id})}"><span
+									class="glyphicon glyphicon-trash"></span></a></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</th:block>
+	</div>
+	<footer th:replace="layout :: footer"></footer>
+	
+</body>
+</html>
