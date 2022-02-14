@@ -6,11 +6,12 @@ import com.example.demo.model.ToDoList;
 
 public interface ToDoListService {
 	Iterable<ToDoList> findAll();
-	
+
 	List<ToDoList> search(String name);
-    ToDoList findOne(long id);
 
-    void save(ToDoList tdl);
+	ToDoList findOne(long id);
 
-    void delete(long id);
+	void save(ToDoList tdl);
+
+	void delete(long id);
 }
