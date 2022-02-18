@@ -2,48 +2,43 @@ package com.example.myspring.web;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.myspring.model.User;
 import com.example.myspring.service.UserService;
-import com.example.myspring.web.dto.UserRegistrationDto;
-
-
 
 @Controller
-@RequestMapping("/registration")
 public class UserRegistrationController {
 
+	@Autowired
 	private UserService userService;
 
-	public UserRegistrationController(UserService userService) {
-		super();
-		this.userService = userService;
-	}
-	
-	@ModelAttribute("user")
-    public UserRegistrationDto userRegistrationDto() {
-        return new UserRegistrationDto();
-    }
-	
-	@GetMapping
-	public String showRegistrationForm() {
+	@GetMapping("/registration")
+	public String add(Model model) {
+		model.addAttribute("user", new User());
 		return "registration";
 	}
-	
-	@PostMapping
-	public String registerUserAccount(@ModelAttribute("user") UserRegistrationDto registrationDto) {
+
+	@PostMapping("/registration")
+	public String registerUserAccount(@Validated User user, @RequestParam("password") String password,
+			@RequestParam("password1") String password1) {
 		List<User> userList = userService.findAll();
-		for (User user : userList) {
-			if(user.getEmail().equals(registrationDto.getEmail())) {
+		for (User u : userList) {
+			if (u.getEmail().equals(user.getEmail())) {
 				return "redirect:/registration?error";
+			} else if (userService.checkEmail(user.getEmail()) == false) {
+				return "redirect:/registration?errorMail";
+			} else if (!password.equals(password1)) {
+				return "redirect:/registration?errorPass";
 			}
 		}
-		userService.save(registrationDto);
+		userService.save(user);
 		return "redirect:/registration?success";
 	}
 }
